@@ -3,18 +3,31 @@ package com.resumegenius.ResumeGenius.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-@Entity(name = "users")
-public class UserEntity implements Serializable {
+import java.util.Date;
+
+@Entity
+@MappedSuperclass
+public class PersonEntity implements Serializable {
 
     private static final long serialVersionUID = 861212087593794753L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String userId;
+    private String personId;
     @Column(nullable = false, length =50)
     private String firstName;
     @Column(nullable = false , length =50)
     private String lastName;
+    @Column(nullable = false , length =50)
+    private String adresse;
+    @Column(nullable = false)
+    private String photo;
+    @Column(nullable = false , length =50)
+    private String phoneNumber;
+    @Column(nullable = false , length =50)
+    private Date dateBirth;
+
+
     @Column(nullable = false, length =50, unique = true)
     private String email;
     @Column(nullable = false)
@@ -27,23 +40,20 @@ public class UserEntity implements Serializable {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getPersonId() {
+        return personId;
     }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -51,9 +61,35 @@ public class UserEntity implements Serializable {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+    public String getPhoto() {
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Date getDateBirth() {
+        return dateBirth;
+    }
+    public void setDateBirth(Date dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
     public String getEmail() {

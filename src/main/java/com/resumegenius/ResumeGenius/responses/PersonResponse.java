@@ -1,10 +1,18 @@
-package com.resumegenius.ResumeGenius.requests;
+package com.resumegenius.ResumeGenius.responses;
 
-public class UserRequest {
+public class PersonResponse {
+    private String personId;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -28,13 +36,5 @@ public class UserRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

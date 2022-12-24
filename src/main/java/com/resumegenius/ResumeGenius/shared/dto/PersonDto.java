@@ -2,10 +2,10 @@ package com.resumegenius.ResumeGenius.shared.dto;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable {
+public class PersonDto implements Serializable {
     private static final long serialVersionUID = 4572267366305279312L;
     private long id;
-    private String userId;
+    private String personId;
     private String firstName;
     private String lastName;
     private String email;
@@ -22,12 +22,12 @@ public class UserDto implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String setPersonId() {
+        return personId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {

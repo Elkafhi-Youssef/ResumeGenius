@@ -1,9 +1,9 @@
 package com.resumegenius.ResumeGenius.controllers;
 
-import com.resumegenius.ResumeGenius.requests.UserRequest;
-import com.resumegenius.ResumeGenius.responses.UserResponse;
-import com.resumegenius.ResumeGenius.services.UserService;
-import com.resumegenius.ResumeGenius.shared.dto.UserDto;
+import com.resumegenius.ResumeGenius.requests.PersonRequest;
+import com.resumegenius.ResumeGenius.responses.PersonResponse;
+import com.resumegenius.ResumeGenius.services.PersonService;
+import com.resumegenius.ResumeGenius.shared.dto.PersonDto;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +12,19 @@ import java.lang.reflect.InvocationTargetException;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class PersonController {
     @Autowired
-    UserService userService;
+    PersonService userService;
     @GetMapping
     public  String getUser(){
         return "get user methode ";
     }
     @PostMapping
-    public UserResponse createUser(@RequestBody UserRequest userRequest) throws InvocationTargetException, IllegalAccessException {
-        UserDto userDto = new UserDto();
+    public PersonResponse createUser(@RequestBody PersonRequest userRequest) throws InvocationTargetException, IllegalAccessException {
+        PersonDto userDto = new PersonDto();
         BeanUtils.copyProperties( userDto,userRequest );
-        UserDto createUser = userService.createUser(userDto);
-        UserResponse userResponse = new UserResponse();
+        PersonDto createUser = userService.createUser(userDto);
+        PersonResponse userResponse = new PersonResponse();
         BeanUtils.copyProperties( userResponse,createUser );
         return userResponse;
     }
