@@ -1,10 +1,16 @@
 package com.resumegenius.ResumeGenius.requests;
 
+import java.util.Date;
+
 public class PersonRequest {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+    private String adresse;
+    private String photo;
+    private String phoneNumber;
+    private String dateBirth;
 
     public String getFirstName() {
         return firstName;
@@ -36,5 +42,32 @@ public class PersonRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getAdresse() {
+        return adresse;
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getDateBirth() {
+        return dateBirth;
+    }
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
     }
 }

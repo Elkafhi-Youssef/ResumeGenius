@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @MappedSuperclass
 public class PersonEntity implements Serializable {
 
@@ -18,23 +17,24 @@ public class PersonEntity implements Serializable {
     private String firstName;
     @Column(nullable = false , length =50)
     private String lastName;
-    @Column(nullable = false , length =50)
+    @Column(nullable = false , length =50,name = "adresse")
     private String adresse;
     @Column(nullable = false)
     private String photo;
     @Column(nullable = false , length =50)
     private String phoneNumber;
     @Column(nullable = false , length =50)
-    private Date dateBirth;
-
-
+    private String dateBirth;
     @Column(nullable = false, length =50, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String role;
     @Column(nullable = false)
     private String encryptedPassword;
     @Column(nullable = true)
     private String emailVerificationToken;
-    @Column( nullable = false)
+    @Column(nullable = false)
     private Boolean emailVerificationStatus = false ;
 
     public long getId() {
@@ -85,10 +85,10 @@ public class PersonEntity implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getDateBirth() {
+    public String getDateBirth() {
         return dateBirth;
     }
-    public void setDateBirth(Date dateBirth) {
+    public void setDateBirth(String dateBirth) {
         this.dateBirth = dateBirth;
     }
 
@@ -99,6 +99,14 @@ public class PersonEntity implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 
     public String getEncryptedPassword() {
         return encryptedPassword;

@@ -1,7 +1,7 @@
 package com.resumegenius.ResumeGenius.services.impl;
 
 import com.fasterxml.jackson.databind.util.BeanUtil;
-import com.resumegenius.ResumeGenius.entities.PersonEntity;
+import com.resumegenius.ResumeGenius.entities.AdminEntity;
 import com.resumegenius.ResumeGenius.repositories.PersonRepository;
 import com.resumegenius.ResumeGenius.services.PersonService;
 import com.resumegenius.ResumeGenius.shared.dto.PersonDto;
@@ -15,20 +15,24 @@ import java.lang.reflect.InvocationTargetException;
 
 @Service
 public class PersonServiceimpl implements PersonService {
+//    injection de dependence
     @Autowired
     PersonRepository personRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Override
     public PersonDto createPerson(PersonDto person) throws InvocationTargetException, IllegalAccessException {
-        PersonEntity checkPerson =  personRepository.findByEmail(person.getEmail());
+//        check user if already exists
+        AdminEntity checkPerson =  personRepository.findByEmail(person.getEmail());
         if(checkPerson!=null) throw new RuntimeException("Person already exists");
-        PersonEntity personEntity = new PersonEntity();
+        AdminEntity personEntity = new AdminEntity();
         BeanUtils.copyProperties(personEntity,person);
+//        crypter le mot de passe d'utilisateur
         personEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(person.getPassword()));
         personEntity.setPersonId("personid");
-        PersonEntity newPerson = personRepository.save(personEntity);
+//        persistance
+        AdminEntity newPerson = personRepository.save(personEntity);
+//        create new object type userDto
         PersonDto newPersonDto = new PersonDto();
         BeanUtils.copyProperties(newPersonDto,newPerson);
 
@@ -36,8 +40,8 @@ public class PersonServiceimpl implements PersonService {
     }
 
     @Override
-    public PersonEntity findPersonByEmail(String email) throws InvocationTargetException, IllegalAccessException {
-        PersonEntity personEntity = new PersonEntity();
+    public AdminEntity findPersonByEmail(String email) throws InvocationTargetException, IllegalAccessException {
+        AdminEntity personEntity = new AdminEntity();
         personEntity =  personRepository.findByEmail(email);
         if (personEntity == null) throw new UsernameNotFoundException("email not found");
         return personEntity;

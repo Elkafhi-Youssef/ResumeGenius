@@ -1,7 +1,7 @@
 package com.resumegenius.ResumeGenius.security;
 
 
-import com.resumegenius.ResumeGenius.entities.PersonEntity;
+import com.resumegenius.ResumeGenius.entities.AdminEntity;
 import com.resumegenius.ResumeGenius.services.impl.PersonServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,22 +32,21 @@ import java.util.Collections;
 
 public class WebSecurity  {
     private final JwtAuthFilter jwtAuthFilter;
-    private final PersonServiceimpl personService;
+    private final PersonServiceimpl adminService;
 
     @Autowired
     @Lazy
-    public WebSecurity(JwtAuthFilter jwtAuthFilter,  PersonServiceimpl personService) {
+    public WebSecurity(JwtAuthFilter jwtAuthFilter,  PersonServiceimpl adminService) {
         this.jwtAuthFilter = jwtAuthFilter;
-        this.personService = personService;
+        this.adminService = adminService;
     }
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**")
+                .requestMatchers("/auth/**","/person/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -59,7 +58,6 @@ public class WebSecurity  {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
     @Bean
     public AuthenticationProvider authenticationProvider() {
         final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -83,16 +81,15 @@ public class WebSecurity  {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                PersonEntity person = null;
+                AdminEntity admin = null;
                 try {
-                    person = personService.findPersonByEmail(email);
+                    admin = adminService.findPersonByEmail(email);
                 } catch (InvocationTargetException e) {
                     throw new RuntimeException(e);
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }
-                return new User(person.getEmail(), person.getEncryptedPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
-
+                return new User(admin.getEmail(), admin.getEncryptedPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
             }
         };
     }

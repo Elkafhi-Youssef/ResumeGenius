@@ -20,7 +20,6 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
-
     @PostMapping("/authenticate")
     public ResponseEntity<String> authenticate(@RequestBody PersonRequest request) {
 
@@ -30,6 +29,7 @@ public class AuthController {
         );
 
         final UserDetails user = userDetailsService.loadUserByUsername(request.getEmail());
+
 
         if (user != null) {
             return ResponseEntity.ok(jwtUtil.generateToken(user));
