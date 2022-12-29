@@ -1,7 +1,6 @@
 package com.resumegenius.ResumeGenius.security;
 
-
-import com.resumegenius.ResumeGenius.services.UserService;
+import com.resumegenius.ResumeGenius.services.PersonService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,9 +21,11 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-//    private final UserDao userDao;
+    //    private final UserDao userDao;
     private final JwtUtil jwtUtil;
-    private final UserService userService;
+    private final PersonService personService;
+
+    //    private final UserDao userDao;
     private final UserDetailsService userDetailsService;
 
 

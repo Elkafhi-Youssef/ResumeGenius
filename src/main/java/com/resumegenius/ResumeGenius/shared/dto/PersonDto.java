@@ -1,28 +1,23 @@
-package com.resumegenius.ResumeGenius.entities;
-
-import jakarta.persistence.*;
+package com.resumegenius.ResumeGenius.shared.dto;
 
 import java.io.Serializable;
-@Entity(name = "users")
-public class UserEntity implements Serializable {
+import java.util.Date;
 
-    private static final long serialVersionUID = 861212087593794753L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PersonDto implements Serializable {
+    private static final long serialVersionUID = 4572267366305279312L;
     private long id;
-    private String userId;
-    @Column(nullable = false, length =50)
+    private String personId;
     private String firstName;
-    @Column(nullable = false , length =50)
     private String lastName;
-    @Column(nullable = false, length =50, unique = true)
     private String email;
-    @Column(nullable = false)
+    private String password;
+    private String adresse;
+    private String photo;
+    private String phoneNumber;
+    private String dateBirth;
     private String encryptedPassword;
-    @Column(nullable = true)
     private String emailVerificationToken;
-    @Column( nullable = false)
-    private Boolean emailVerificationStatus = false ;
+    private Boolean emailVerificationStatus = false;
 
     public long getId() {
         return id;
@@ -32,12 +27,12 @@ public class UserEntity implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String setPersonId() {
+        return personId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {
@@ -62,6 +57,39 @@ public class UserEntity implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    public String getDateBirth() {
+        return dateBirth;
+    }
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
     public String getEncryptedPassword() {

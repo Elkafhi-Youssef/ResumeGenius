@@ -1,17 +1,17 @@
 package com.resumegenius.ResumeGenius.responses;
 
-public class UserResponse {
-    private String userId;
+public class PersonResponse {
+    private String personId;
     private String firstName;
     private String lastName;
     private String email;
 
-    public String getUserId() {
-        return userId;
+    public String getPersonId() {
+        return personId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public String getFirstName() {

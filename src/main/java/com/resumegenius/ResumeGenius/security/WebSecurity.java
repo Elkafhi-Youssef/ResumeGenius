@@ -1,8 +1,8 @@
 package com.resumegenius.ResumeGenius.security;
 
 
-import com.resumegenius.ResumeGenius.entities.UserEntity;
-import com.resumegenius.ResumeGenius.services.impl.UserServiceimpl;
+import com.resumegenius.ResumeGenius.entities.PersonEntity;
+import com.resumegenius.ResumeGenius.services.impl.PersonServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,13 +32,13 @@ import java.util.Collections;
 
 public class WebSecurity  {
     private final JwtAuthFilter jwtAuthFilter;
-    private final UserServiceimpl userService;
+    private final PersonServiceimpl personService;
 
     @Autowired
     @Lazy
-    public WebSecurity(JwtAuthFilter jwtAuthFilter,  UserServiceimpl userService) {
+    public WebSecurity(JwtAuthFilter jwtAuthFilter,  PersonServiceimpl personService) {
         this.jwtAuthFilter = jwtAuthFilter;
-        this.userService = userService;
+        this.personService = personService;
     }
 
 
@@ -83,15 +83,15 @@ public class WebSecurity  {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                UserEntity user = null;
+                PersonEntity person = null;
                 try {
-                    user = userService.findUserByEmail(email);
+                    person = personService.findPersonByEmail(email);
                 } catch (InvocationTargetException e) {
                     throw new RuntimeException(e);
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }
-                return new User(user.getEmail(), user.getEncryptedPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
+                return new User(person.getEmail(), person.getEncryptedPassword(), Collections.singleton(new SimpleGrantedAuthority("user")));
 
             }
         };
