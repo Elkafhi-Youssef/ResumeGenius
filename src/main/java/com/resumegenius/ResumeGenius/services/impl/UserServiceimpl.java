@@ -39,7 +39,9 @@ public class UserServiceimpl implements UserService {
     public UserEntity findUserByEmail(String email) throws InvocationTargetException, IllegalAccessException {
         UserEntity userEntity = new UserEntity();
         userEntity =  userRepository.findByEmail(email);
-        if (userEntity == null) throw new UsernameNotFoundException("email not found");
+        System.out.println("exceptiion not throws");
+        if (userEntity != null) throw new RuntimeException("email not found");
+
         return userEntity;
     }
 }

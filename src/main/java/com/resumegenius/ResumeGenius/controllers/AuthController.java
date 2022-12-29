@@ -22,7 +22,7 @@ public class AuthController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<String> authenticate(@RequestBody UserRequest request) {
+    public ResponseEntity<String> authenticate(@RequestBody UserRequest request)  {
 
         System.out.println("here");
         authenticationManager.authenticate(
