@@ -1,6 +1,5 @@
 package com.resumegenius.ResumeGenius.security;
 
-
 import com.resumegenius.ResumeGenius.services.PersonService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -25,6 +24,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     //    private final UserDao userDao;
     private final JwtUtil jwtUtil;
     private final PersonService personService;
+
+    //    private final UserDao userDao;
     private final UserDetailsService userDetailsService;
 
 

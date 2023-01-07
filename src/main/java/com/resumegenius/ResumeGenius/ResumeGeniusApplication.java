@@ -12,6 +12,8 @@ public class ResumeGeniusApplication {
 
 		SpringApplication.run(ResumeGeniusApplication.class, args);
 	}
+
+//	Crypter le mot de passe utilisateur
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();

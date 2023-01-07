@@ -12,13 +12,16 @@ import java.lang.reflect.InvocationTargetException;
 
 @RestController
 @RequestMapping("/person")
-public class PersonController {
+public class AdminController {
     @Autowired
     PersonService personService;
-    @GetMapping
-    public  String getPerson(){
-        return "get person methode ";
+//    get one person and use dynamic segment
+    @GetMapping(path = "/{id}")
+    public  String getPerson(@PathVariable String id){
+        return "get person methode "+ id;
     }
+
+//   Create new admin
     @PostMapping("/createPerson")
     public PersonResponse createPerson(@RequestBody PersonRequest personRequest) throws InvocationTargetException, IllegalAccessException {
         System.out.println("koalaaaa");

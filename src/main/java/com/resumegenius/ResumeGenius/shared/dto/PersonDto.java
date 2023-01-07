@@ -1,6 +1,7 @@
 package com.resumegenius.ResumeGenius.shared.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class PersonDto implements Serializable {
     private static final long serialVersionUID = 4572267366305279312L;
@@ -10,6 +11,10 @@ public class PersonDto implements Serializable {
     private String lastName;
     private String email;
     private String password;
+    private String adresse;
+    private String photo;
+    private String phoneNumber;
+    private String dateBirth;
     private String encryptedPassword;
     private String emailVerificationToken;
     private Boolean emailVerificationStatus = false;
@@ -57,9 +62,34 @@ public class PersonDto implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    public String getDateBirth() {
+        return dateBirth;
+    }
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
     }
 
     public String getEncryptedPassword() {

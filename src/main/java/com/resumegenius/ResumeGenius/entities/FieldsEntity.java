@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-
-@Entity
 @MappedSuperclass
 public class FieldsEntity implements Serializable {
     @Id
